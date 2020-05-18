@@ -20,9 +20,17 @@ function App() {
   };
 
   function addTask(title: string) {
-    let task = {id: v1(), title: title, isDone: false}
+    let task = { id: v1(), title: title, isDone: false }
     let newTasks = [task, ...tasks]
     setTasks(newTasks)
+  }
+
+  function changeStatus(id: string, isDone: boolean) {
+    let task = tasks.find(task => task.id === id)
+    if(task) {
+      task.isDone = isDone
+      setTasks([...tasks]);
+    }
   }
 
   console.log(tasks)
@@ -30,7 +38,7 @@ function App() {
   let [filter, setFilter] = useState<FilterValuesType>("all");
 
   let tasksForToDoList = tasks;
-  
+
   if (filter === "active") {
     tasksForToDoList = tasks.filter(task => task.isDone === false)
   }
@@ -48,8 +56,10 @@ function App() {
         title="ReactJS"
         tasks={tasksForToDoList}
         removeTask={removeTask}
+        filter={filter}
         changeFilter={changeFilter}
-        addTask={addTask} />
+        addTask={addTask}
+        changeStatus={changeStatus} />
     </div>
   );
 }

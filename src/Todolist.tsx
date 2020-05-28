@@ -2,20 +2,21 @@ import React, { useState, ChangeEvent, KeyboardEvent } from "react";
 import { FilterValuesType } from "./App";
 
 
-type TaskType = {
+export type TaskType = {
   id: string
   title: string
   isDone: boolean
 }
 
 type PropsType = {
+  id: string
   title: string
   tasks: Array<TaskType>
   filter: string
-  removeTask: (taskId: string) => void
-  changeFilter: (value: FilterValuesType) => void
-  addTask: (title: string) => void
-  changeStatus: (id: string, isDone: boolean) => void
+  removeTask: (taskId: string, todoListId: string) => void
+  changeFilter: (value: FilterValuesType, todoListId: string) => void
+  addTask: (title: string, todoListId: string) => void
+  changeStatus: (id: string, isDone: boolean, todoListId: string) => void
 }
 
 const Todolist = (props: PropsType) => {
@@ -27,7 +28,7 @@ const Todolist = (props: PropsType) => {
     let preparedTitle = title.trim();
 
     if (preparedTitle) {
-      props.addTask(preparedTitle)
+      props.addTask(preparedTitle, props.id)
     } else {
       setError('Ttitle is required!');
     }
@@ -45,9 +46,9 @@ const Todolist = (props: PropsType) => {
     }
   }
 
-  const onAllClickHandler = () => { props.changeFilter("all") }
-  const onActiveClickHandler = () => { props.changeFilter("active") }
-  const onCompletedClickHandler = () => { props.changeFilter("completed") }
+  const onAllClickHandler = () => { props.changeFilter("all", props.id) }
+  const onActiveClickHandler = () => { props.changeFilter("active", props.id) }
+  const onCompletedClickHandler = () => { props.changeFilter("completed", props.id) }
 
   return (
     <div>
@@ -67,9 +68,9 @@ const Todolist = (props: PropsType) => {
         {
           props.tasks.map((task) => {
 
-            const onClickTandler = () => props.removeTask(task.id)
+            const onClickTandler = () => props.removeTask(task.id, props.id)
             const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-              props.changeStatus(task.id, e.currentTarget.checked)
+              props.changeStatus(task.id, e.currentTarget.checked, props.id)
             }
 
             return <li

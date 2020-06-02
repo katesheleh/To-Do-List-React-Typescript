@@ -63,13 +63,23 @@ function App() {
   }
 
   function changeStatus( id: string, isDone: boolean, todoListId: string ) {
-    let todoList = tasksObj[ todoListId ];
-    let task = todoList.find( task => task.id === id );
+    let todoTasks = tasksObj[ todoListId ];
+    let task = todoTasks.find( task => task.id === id );
     if ( task ) {
       task.isDone = isDone;
       setTasks( { ...tasksObj } );
     }
   }
+
+  function changeTitle( taskId: string, title: string, todolistId: string ) {
+    let task = tasksObj[ todolistId ].find( t => t.id === taskId );
+    if ( task ) {
+      task.title = title;
+      setTasks( { ...tasksObj } );
+    }
+
+  }
+
 
   console.log( tasksObj );
 
@@ -115,7 +125,8 @@ function App() {
             addTask={ addTask }
             changeStatus={ changeStatus }
             removeTodoList={ removeTodoList }
-            todoLists={ todoLists } />
+            todoLists={ todoLists }
+            changeTitle={ changeTitle } />
         );
       } ) }
     </div>

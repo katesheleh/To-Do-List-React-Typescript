@@ -14,7 +14,7 @@ export function AddItemForm( props: AddItemFormPropsType ) {
       props.addItem( preparedTitle );
     }
     else {
-      setError( 'Ttitle is required!' );
+      setError( 'Title is required!' );
     }
     setTitle( "" );
   };

@@ -55,6 +55,14 @@ function App() {
     setTasks( { ...tasksObj } );
   };
 
+  function changeTodoListTitle( id: string, title: string ) {
+    const todoList = todoLists.find( tl => tl.id === id );
+    if ( todoList ) {
+      todoList.title = title;
+      setTodoLists( [ ...todoLists ] );
+    }
+  }
+
   function addTask( title: string, todoListId: string ) {
     let task = { id: v1(), title: title, isDone: false };
     let todoList = tasksObj[ todoListId ];
@@ -79,7 +87,6 @@ function App() {
     }
 
   }
-
 
   console.log( tasksObj );
 
@@ -126,7 +133,8 @@ function App() {
             changeStatus={ changeStatus }
             removeTodoList={ removeTodoList }
             todoLists={ todoLists }
-            changeTitle={ changeTitle } />
+            changeTitle={ changeTitle }
+            changeTodoListTitle={ changeTodoListTitle } />
         );
       } ) }
     </div>

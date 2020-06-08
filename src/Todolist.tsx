@@ -21,6 +21,7 @@ type PropsType = {
   todoLists: Array<todoListType>;
   removeTodoList: ( id: string ) => void;
   changeTitle: ( taskId: string, title: string, todolistId: string ) => void;
+  changeTodoListTitle: ( id: string, title: string ) => void;
 };
 
 const Todolist = ( props: PropsType ) => {
@@ -37,10 +38,15 @@ const Todolist = ( props: PropsType ) => {
     props.addTask( title, props.id );
   };
 
+  const onChangeTodoListTitle = ( title: string ) => {
+    props.changeTodoListTitle( props.id, title );
+  };
+
   return (
     <div>
 
-      <h3>{ props.title }
+      <h3>
+        <EditableSpan value={ props.title } onChange={ onChangeTodoListTitle } />
         <button onClick={ removeTodoList }> X </button>
       </h3>
 

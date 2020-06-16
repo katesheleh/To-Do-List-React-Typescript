@@ -2,7 +2,7 @@ import React, { ChangeEvent } from "react";
 import { FilterValuesType, todoListType } from './App';
 import { AddItemForm } from "./AddItemForm";
 import EditableSpan from "./EditablesSpan";
-import { IconButton, Button, TextField, Checkbox } from '@material-ui/core';
+import { IconButton, Button, Checkbox } from '@material-ui/core';
 import { Delete } from '@material-ui/icons';
 
 

@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2b2b0407c935774b3643be13ab5196de",
+    "revision": "b6abea7dc4ba7003e2b33d30d8cda9fe",
     "url": "/To-Do-List-React-Typescript/index.html"
   },
   {
-    "revision": "ae5ddecdb27528a28b29",
+    "revision": "a40235467f4047531483",
     "url": "/To-Do-List-React-Typescript/static/css/main.27fd15f6.chunk.css"
   },
   {
-    "revision": "7a9483905dea0314f459",
-    "url": "/To-Do-List-React-Typescript/static/js/2.bede0a92.chunk.js"
+    "revision": "828f016e8e405cba4898",
+    "url": "/To-Do-List-React-Typescript/static/js/2.1e625629.chunk.js"
   },
   {
     "revision": "0749163b59fbee32225059cb60c18af6",
-    "url": "/To-Do-List-React-Typescript/static/js/2.bede0a92.chunk.js.LICENSE.txt"
+    "url": "/To-Do-List-React-Typescript/static/js/2.1e625629.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "ae5ddecdb27528a28b29",
-    "url": "/To-Do-List-React-Typescript/static/js/main.481b1839.chunk.js"
+    "revision": "a40235467f4047531483",
+    "url": "/To-Do-List-React-Typescript/static/js/main.7cd7654b.chunk.js"
   },
   {
     "revision": "dd97a02ed35541b012d1",

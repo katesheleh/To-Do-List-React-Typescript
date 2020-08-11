@@ -49,12 +49,13 @@ export const setTasksAC = (tasks: Array<TaskType>, todolistId: string) =>
 		({type: 'SET-TASKS', tasks, todolistId} as const)
 
 // thunks
-export const fetchTasksTC = (todolistId: string) => (dispatch: Dispatch<ActionsType>) => {
+export const fetchTasksTC = (todolistId: string) => (dispatch: ThunkDispatchType) => {
+	dispatch(setAppStatusAC('loading'))
 	todolistsAPI.getTasks(todolistId)
 			.then((res) => {
 				const tasks = res.data.items
-				const action = setTasksAC(tasks, todolistId)
-				dispatch(action)
+				dispatch(setTasksAC(tasks, todolistId))
+				dispatch(setAppStatusAC('succeeded'))
 			})
 }
 export const removeTaskTC = (taskId: string, todolistId: string) => (dispatch: Dispatch<ActionsType>) => {
@@ -64,6 +65,8 @@ export const removeTaskTC = (taskId: string, todolistId: string) => (dispatch: D
 				dispatch(action)
 			})
 }
+
+
 export const addTaskTC = (todolistId: string, taskTitile: string) => (dispatch: ThunkDispatchType, getState: () => AppRootStateType) => {
 	dispatch(setAppStatusAC('loading'))
 	todolistsAPI.createTask(todolistId, taskTitile)

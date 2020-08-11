@@ -22,8 +22,7 @@ export function ErrorSnackbar() {
 		}
 
 		dispatch(setAppErrorAC(null))
-
-		setOpen(false)
+		// setOpen(false)
 	}
 
 	return (

@@ -3,10 +3,11 @@ import {Dispatch} from 'redux'
 import {
 	RequestStatusType,
 	setAppErrorAC,
-	setAppErrorACType,
+	SetAppErrorACType,
 	setAppStatusAC,
-	setAppStatusACType
+	SetAppStatusACType
 } from '../../app/app-reducer';
+import {handleServerAppError, handleServerNetworkError} from '../../utils/error-utils';
 
 const initialState: Array<TodolistDomainType> = []
 
@@ -80,9 +81,11 @@ export const addTodolistTC = (title: string) => {
 						dispatch(addTodolistAC(res.data.data.item))
 						dispatch(setAppStatusAC('succeeded'))
 					} else {
-						dispatch(setAppErrorAC(res?.data?.messages[0]) || 'some error')
-						dispatch(setAppStatusAC('failed'))
+						handleServerAppError(res.data, dispatch)
 					}
+				})
+				.catch((error) => {
+					handleServerNetworkError(error, dispatch)
 				})
 	}
 }
@@ -113,4 +116,4 @@ export type TodolistDomainType = TodolistType & {
 	entityStatus: RequestStatusType
 }
 
-type ThunkDispatchType = Dispatch<ActionsType | setAppErrorACType | setAppStatusACType>
+type ThunkDispatchType = Dispatch<ActionsType | SetAppErrorACType | SetAppStatusACType>

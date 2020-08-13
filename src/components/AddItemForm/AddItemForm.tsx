@@ -7,7 +7,7 @@ type AddItemFormPropsType = {
     disabled?: boolean
 }
 
-export const AddItemForm = React.memo(function({disabled = false, ...props}: AddItemFormPropsType) {
+export const AddItemForm = React.memo(function({addItem, disabled = false}: AddItemFormPropsType) {
     console.log("AddItemForm called")
 
     let [title, setTitle] = useState("")
@@ -15,7 +15,7 @@ export const AddItemForm = React.memo(function({disabled = false, ...props}: Add
 
     const addItemHandler = () => {
         if (title.trim() !== "") {
-            props.addItem(title);
+            addItem(title);
             setTitle("");
         } else {
             setError("Title is required");
